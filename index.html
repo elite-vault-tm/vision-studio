@@ -633,7 +633,7 @@
       <button class="gate-btn" id="codeBtn" type="button">Unlock the Studio 🔓</button>
       <p class="gate-error" id="codeError"></p>
     </div>
-    <p class="gate-footer">Powered by The Elite Vault</p>
+    <p class="gate-footer">Powered by The Elite Vault™</p>
   </div>
 </div>
 
@@ -657,8 +657,8 @@
     <div class="photo-grid">
       <!-- Photo 1 -->
       <section>
-        <div class="field-label">Upload Your Reference Photo<span class="req-star">*</span></div>
-        <p class="helper">Upload a clear, well-lit photo of your face. We use this to anchor your likeness, while the AI builds a completely new setting, outfit, and pose around you.</p>
+        <div class="field-label">Upload Your Reference Photo</div>
+        <p class="helper">Want yourself in the image? Upload a clear, well-lit photo of your face. Skip this if the visual doesn't need you in it — quotes, scenes, and styled flat lays work too.</p>
         <div class="dropzone" id="dz1" tabindex="0" role="button" aria-label="Upload your reference photo">
           <div class="cam-circle" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -698,7 +698,7 @@
       </section>
     </div>
 
-    <p style="font-size:0.82rem; color:#7a7480; text-align:center; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.6;"><strong style="color:#4a4550;">Your photos stay private.</strong> They are previewed only in your browser and are never uploaded to The Vision Studio, Make, or our servers. When your prompt is ready, you'll attach your reference photo directly in the AI image generator you choose.</p>
+    <p style="font-size:0.82rem; color:#7a7480; text-align:center; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.6;"><strong style="color:#4a4550;">Your photos stay private.</strong> If you upload a reference photo, it is previewed only in your browser and is never uploaded to The Vision Studio, Make, or our servers. When your prompt is ready, you'll attach your reference photo directly in the AI image generator you choose.</p>
 
     <!-- Post -->
     <section class="text-field">
@@ -739,7 +739,7 @@
   </div>
 </main>
 
-<footer>The Vision Studio ✨ · Powered by The Elite Vault</footer>
+<footer>The Vision Studio ✨ · Powered by The Elite Vault™</footer>
 
 </div><!-- /app -->
 
@@ -937,10 +937,6 @@
     errorBox.classList.remove('show');
     results.classList.remove('show');
 
-    if (!photos[1]) {
-      showValidation('Upload your reference photo first — that\u2019s what anchors your likeness.');
-      return;
-    }
     if (!postText.value.trim()) {
       showValidation('Paste your marketing post so the studio has a message to work with.');
       return;
