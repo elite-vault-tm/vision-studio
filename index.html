@@ -3,7 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Vision Studio ✨</title>
+<title>The Vision Studio ✨ | AI Image Prompt Generator</title>
+<meta name="description" content="Turn your marketing message into a compelling, ready-to-copy AI image prompt with The Vision Studio.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Vision Studio ✨">
+<meta property="og:description" content="Turn your marketing message into a compelling, ready-to-copy AI image prompt.">
+<meta property="og:url" content="https://elite-vault-tm.github.io/vision-studio/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Vision Studio ✨">
+<meta name="twitter:description" content="Turn your marketing message into a compelling, ready-to-copy AI image prompt.">
+<meta name="theme-color" content="#050505">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -688,11 +698,13 @@
       </section>
     </div>
 
+    <p style="font-size:0.82rem; color:#7a7480; text-align:center; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.6;"><strong style="color:#4a4550;">Your photos stay private.</strong> They are previewed only in your browser and are never uploaded to The Vision Studio, Make, or our servers. When your prompt is ready, you'll attach your reference photo directly in the AI image generator you choose.</p>
+
     <!-- Post -->
     <section class="text-field">
       <div class="field-label">Paste Your Marketing Post<span class="req-star">*</span></div>
       <p class="helper">Paste the exact post you want the image to support. The app will identify its message, emotion, purpose, and strongest visual story.</p>
-      <textarea id="postText" aria-label="Paste your marketing post"></textarea>
+      <textarea id="postText" aria-label="Paste your marketing post" placeholder="Paste the post you want visuals for—an Instagram caption, launch announcement, sales post, email, or story prompt…"></textarea>
     </section>
 
     <!-- Appearance -->
@@ -753,8 +765,7 @@
     app.classList.add('show');
   }
 
-  // AUDIT MODE: gate bypassed — restore after audit by changing true back to isUnlocked()
-  if (true) { unlock(); }
+  if (isUnlocked()) { unlock(); }
 
   codeBtn.addEventListener('click', tryCode);
   codeInput.addEventListener('keydown', function (e) {
