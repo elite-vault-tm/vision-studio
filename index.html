@@ -35,6 +35,174 @@
     padding: 0 24px;
   }
 
+  /* ============ ACCESS GATE ============ */
+  .gate {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gate.hidden { display: none; }
+
+  .gate-deco {
+    position: absolute;
+    top: -140px;
+    right: -160px;
+    width: 480px;
+    height: 480px;
+    border: 1.5px solid rgba(212,161,30,0.55);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .gate-deco::after {
+    content: '';
+    position: absolute;
+    inset: 70px;
+    border: 1.5px solid rgba(212,161,30,0.35);
+    border-radius: 50%;
+  }
+
+  .gate-dot {
+    position: absolute;
+    bottom: 80px;
+    left: 60px;
+    width: 12px;
+    height: 12px;
+    background: var(--fuchsia);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .gate-card {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 480px;
+    padding: 24px;
+  }
+
+  .gate-tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.72rem;
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+
+  .gate-tagline::before,
+  .gate-tagline::after {
+    content: '';
+    width: 36px;
+    height: 1.5px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .gate-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 8vw, 4.4rem);
+    color: var(--cream);
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .gate-title .accent { color: var(--fuchsia); }
+
+  .gate-sub {
+    font-size: 1.05rem;
+    color: rgba(237,227,212,0.8);
+    margin-bottom: 40px;
+    line-height: 1.6;
+  }
+
+  .gate-input-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .gate-input {
+    width: 100%;
+    max-width: 340px;
+    padding: 16px 22px;
+    border: 1.5px solid rgba(212,161,30,0.5);
+    border-radius: 50px;
+    background: rgba(255,255,255,0.06);
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .gate-input::placeholder {
+    color: rgba(237,227,212,0.35);
+    letter-spacing: 0.1em;
+    text-transform: none;
+  }
+
+  .gate-input:focus {
+    outline: none;
+    border-color: var(--fuchsia);
+    box-shadow: 0 0 0 3px rgba(233,30,112,0.2);
+  }
+
+  .gate-btn {
+    width: 100%;
+    max-width: 340px;
+    background: var(--fuchsia);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 16px 28px;
+    font-family: var(--sans);
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 6px 20px rgba(233,30,112,0.35);
+  }
+
+  .gate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(233,30,112,0.45);
+  }
+
+  .gate-error {
+    color: var(--fuchsia);
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-top: 8px;
+    min-height: 24px;
+  }
+
+  .gate-footer {
+    margin-top: 48px;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ============ MAIN APP ============ */
+  .app { display: none; }
+  .app.show { display: block; }
+
   /* ---------- DARK HERO ---------- */
   .hero {
     background: var(--black);
@@ -305,34 +473,26 @@
 
   .validation-msg.show { display: block; }
 
-  /* ---------- LOADING (VAULT ANIMATION) ---------- */
+  /* ---------- LOADING ---------- */
   .loading { display: none; text-align: center; margin-top: 32px; }
   .loading.show { display: block; }
 
-  .vault-spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(212,161,30,0.3);
+  .spinner {
+    width: 38px;
+    height: 38px;
+    border: 3px solid rgba(212,161,30,0.3);
     border-top-color: var(--gold);
     border-radius: 50%;
     margin: 0 auto 16px;
-    animation: spin 1.5s linear infinite;
-    position: relative;
-  }
-
-  .vault-spinner::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 14px;
-    height: 14px;
-    background: var(--fuchsia);
-    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
   }
 
   @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .spinner { animation-duration: 2.5s; }
+    .generate-btn, .gate-btn { transition: none; }
+  }
 
   .loading-msg {
     font-family: var(--serif);
@@ -388,7 +548,7 @@
     flex-wrap: wrap;
   }
 
-  .copy-btn, .restart-btn, .regenerate-btn {
+  .copy-btn, .restart-btn {
     flex: 1;
     min-width: 150px;
     border-radius: 50px;
@@ -397,21 +557,18 @@
     font-size: 0.98rem;
     font-weight: 700;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s, transform 0.1s;
-    text-align: center;
+    transition: background 0.2s, color 0.2s;
   }
 
   .copy-btn { background: var(--fuchsia); color: #fff; border: none; }
-  .copy-btn:hover { background: #c81560; transform: translateY(-1px); }
-
-  .regenerate-btn { background: var(--gold); color: var(--black); border: none; }
-  .regenerate-btn:hover { background: #b88a18; transform: translateY(-1px); }
+  .copy-btn:hover { background: #c81560; }
 
   .restart-btn {
     background: transparent;
     color: var(--cream);
     border: 1.5px solid var(--gold);
   }
+
   .restart-btn:hover { background: rgba(212,161,30,0.15); }
 
   .error-box {
@@ -428,70 +585,9 @@
 
   .error-box.show { display: block; }
 
-  /* ---------- HISTORY VAULT ---------- */
-  .history-wrapper {
-    display: none;
-    margin-top: 80px;
-    padding-top: 50px;
-    border-top: 1px solid rgba(36,33,36,0.1);
-  }
-
-  .history-title {
-    font-family: var(--serif);
-    font-size: 1.8rem;
-    color: var(--black);
-    margin-bottom: 8px;
-  }
-  
-  .history-subtitle {
-    font-size: 0.95rem;
-    color: #4a4550;
-    margin-bottom: 24px;
-  }
-
-  .history-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-  }
-
-  .history-card {
-    background: #fffdf9;
-    border: 1px solid rgba(36,33,36,0.15);
-    border-radius: 16px;
-    padding: 20px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-  }
-
-  .history-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(212,161,30,0.15);
-    border-color: var(--gold);
-  }
-
-  .history-date {
-    font-size: 0.75rem;
-    font-weight: 700;
-    color: var(--fuchsia);
-    margin-bottom: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-  }
-
-  .history-text {
-    font-size: 0.95rem;
-    color: var(--charcoal);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.5;
-  }
-
   footer {
     text-align: center;
-    padding: 60px 24px;
+    padding: 0 24px 56px;
     font-size: 0.78rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -501,18 +597,38 @@
 
   @media (max-width: 640px) {
     .hero { padding: 64px 0 72px; }
-    .hero-deco { width: 300px; height: 300px; top: -110px; right: -130px; }
-    .hero-deco::after { inset: 44px; }
+    .hero-deco, .gate-deco { width: 300px; height: 300px; top: -110px; right: -130px; }
+    .hero-deco::after, .gate-deco::after { inset: 44px; }
     .hero-dot { top: 70px; right: 30px; width: 9px; height: 9px; }
+    .gate-dot { bottom: 40px; left: 30px; width: 9px; height: 9px; }
     .tagline { letter-spacing: 0.2em; font-size: 0.7rem; gap: 12px; }
     .tagline::before { width: 34px; }
     .form-body { padding: 48px 0 64px; }
     .preview-img { height: 260px; }
-    .results-controls { flex-direction: column; }
   }
 </style>
 </head>
 <body>
+
+<!-- ============ ACCESS GATE ============ -->
+<div class="gate" id="gate">
+  <div class="gate-deco" aria-hidden="true"></div>
+  <div class="gate-dot" aria-hidden="true"></div>
+  <div class="gate-card">
+    <span class="gate-tagline">Exclusive Access</span>
+    <h2 class="gate-title">The <span class="accent">Vision</span> Studio ✨</h2>
+    <p class="gate-sub">Enter your access code below to unlock the studio. Your code was included with your purchase confirmation.</p>
+    <div class="gate-input-wrap">
+      <input type="text" class="gate-input" id="codeInput" placeholder="Enter access code" autocomplete="off" spellcheck="false">
+      <button class="gate-btn" id="codeBtn" type="button">Unlock the Studio 🔓</button>
+      <p class="gate-error" id="codeError"></p>
+    </div>
+    <p class="gate-footer">Powered by The Elite Vault™</p>
+  </div>
+</div>
+
+<!-- ============ MAIN APP ============ -->
+<div class="app" id="app">
 
 <header class="hero">
   <div class="hero-deco" aria-hidden="true"></div>
@@ -576,60 +692,93 @@
     <section class="text-field">
       <div class="field-label">Paste Your Marketing Post<span class="req-star">*</span></div>
       <p class="helper">Paste the exact post you want the image to support. The app will identify its message, emotion, purpose, and strongest visual story.</p>
-      <textarea id="postText" aria-label="Paste your marketing post" placeholder="e.g., &quot;Excited to announce our new workshop series! Join us next week as we dive into digital strategy. Link in bio.&quot;"></textarea>
+      <textarea id="postText" aria-label="Paste your marketing post"></textarea>
     </section>
 
     <!-- Appearance -->
     <section class="text-field">
       <div class="field-label">Anything Important About Your Appearance?</div>
       <p class="helper">Add details the reference photo may not clearly show or anything you want consistently included.</p>
-      <textarea id="appearanceText" class="small" aria-label="Appearance details" placeholder="e.g., &quot;Curvy body type, long blonde locs, gold hoop earrings, and wearing a tailored fuchsia blazer.&quot;"></textarea>
+      <textarea id="appearanceText" class="small" aria-label="Appearance details" placeholder="Curvy body type, long blonde locs, gold hoop earrings, and wearing a tailored fuchsia blazer."></textarea>
     </section>
 
     <button class="generate-btn" id="generateBtn" type="button">Generate My Master Prompt 🎥</button>
     <p class="validation-msg" id="validationMsg"></p>
 
-    <!-- Loading Vault -->
     <div class="loading" id="loading" aria-live="polite">
-      <div class="vault-spinner" aria-hidden="true"></div>
-      <p class="loading-msg" id="loadingMsg">Unlocking the vault...</p>
+      <div class="spinner" aria-hidden="true"></div>
+      <p class="loading-msg" id="loadingMsg">Reading the message behind your post...</p>
     </div>
 
     <div class="error-box" id="errorBox">
       Something interrupted the connection. Your inputs are still here — give the button one more try.
     </div>
 
-    <!-- Results -->
     <section class="results" id="results">
       <h2 class="results-label">Your Directed Image Prompt</h2>
       <p class="results-sub">Copy this into the AI image generator of your choice, alongside your reference photo.</p>
       <div class="prompt-box" id="promptBox"></div>
       <div class="results-controls">
         <button class="copy-btn" id="copyBtn" type="button">Copy Prompt</button>
-        <button class="regenerate-btn" id="regenerateBtn" type="button">Regenerate</button>
         <button class="restart-btn" id="restartBtn" type="button">Start Over</button>
       </div>
-    </section>
-
-    <!-- Prompt History Vault -->
-    <section class="history-wrapper" id="historyWrapper">
-      <h2 class="history-title">Your Prompt Vault</h2>
-      <p class="history-subtitle">Your recently generated prompts are saved securely in your browser.</p>
-      <div class="history-grid" id="historyGrid"></div>
     </section>
 
   </div>
 </main>
 
-<footer>The Vision Studio ✨ · Powered by The Elite Vault</footer>
+<footer>The Vision Studio ✨ · Powered by The Elite Vault™</footer>
+
+</div><!-- /app -->
 
 <script>
 (function () {
+  /* ============ ACCESS GATE ============ */
+  var ACCESS_CODE = 'VISION2026';
+  var STORAGE_KEY = 'vs_unlocked';
+
+  var gate = document.getElementById('gate');
+  var app = document.getElementById('app');
+  var codeInput = document.getElementById('codeInput');
+  var codeBtn = document.getElementById('codeBtn');
+  var codeError = document.getElementById('codeError');
+
+  function isUnlocked() {
+    try { return sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { return false; }
+  }
+
+  function unlock() {
+    try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+    gate.classList.add('hidden');
+    app.classList.add('show');
+  }
+
+  if (isUnlocked()) { unlock(); }
+
+  codeBtn.addEventListener('click', tryCode);
+  codeInput.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') tryCode();
+  });
+
+  function tryCode() {
+    var val = codeInput.value.trim().toUpperCase();
+    if (val === ACCESS_CODE) {
+      codeError.textContent = '';
+      unlock();
+    } else if (!val) {
+      codeError.textContent = 'Enter the access code from your purchase confirmation.';
+    } else {
+      codeError.textContent = 'That code didn\u2019t match. Double-check your purchase confirmation email.';
+      codeInput.value = '';
+      codeInput.focus();
+    }
+  }
+
+  /* ============ MAIN APP ============ */
   var WEBHOOK_URL = 'https://hook.us2.make.com/cyk19qef0zkqgna93phi28emm4cb5xo3';
   var MAX_BYTES = 5 * 1024 * 1024;
   var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 
-  // ---- Storage: try sessionStorage, fall back to in-memory ----
   var memStore = {};
   var store = {
     get: function (k) {
@@ -652,14 +801,8 @@
   var results = document.getElementById('results');
   var promptBox = document.getElementById('promptBox');
   var copyBtn = document.getElementById('copyBtn');
-  var regenerateBtn = document.getElementById('regenerateBtn');
   var restartBtn = document.getElementById('restartBtn');
   var errorBox = document.getElementById('errorBox');
-  
-  // History Elements
-  var historyWrapper = document.getElementById('historyWrapper');
-  var historyGrid = document.getElementById('historyGrid');
-  var historyStore = JSON.parse(localStorage.getItem('visionStudioHistory')) || [];
 
   var photos = { 1: null, 2: null };
   var loadingTimer = null;
@@ -739,7 +882,6 @@
   }
 
   var messages = [
-    'Unlocking the vault...',
     'Reading the message behind your post...',
     'Choosing the strongest visual story...',
     'Polishing your final prompt...'
@@ -778,64 +920,6 @@
     }
   }
 
-  // --- HISTORY LOGIC ---
-  function renderHistory() {
-    if (historyStore.length === 0) {
-      historyWrapper.style.display = 'none';
-      return;
-    }
-    historyWrapper.style.display = 'block';
-    historyGrid.innerHTML = '';
-    
-    historyStore.forEach(function(item, index) {
-      var card = document.createElement('div');
-      card.className = 'history-card';
-      card.onclick = function() { loadHistoryItem(index); };
-      
-      var dateEl = document.createElement('div');
-      dateEl.className = 'history-date';
-      dateEl.textContent = item.date;
-      
-      var textEl = document.createElement('div');
-      textEl.className = 'history-text';
-      textEl.textContent = '"' + item.post + '"';
-      
-      card.appendChild(dateEl);
-      card.appendChild(textEl);
-      historyGrid.appendChild(card);
-    });
-  }
-
-  function saveToHistory(post, appearance, prompt) {
-    var now = new Date();
-    var dateString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    
-    var newItem = {
-      date: dateString,
-      post: post,
-      appearance: appearance,
-      prompt: prompt
-    };
-    
-    historyStore.unshift(newItem);
-    if (historyStore.length > 12) historyStore.pop(); // Keep last 12
-    localStorage.setItem('visionStudioHistory', JSON.stringify(historyStore));
-    renderHistory();
-  }
-
-  function loadHistoryItem(index) {
-    var item = historyStore[index];
-    postText.value = item.post;
-    appearanceText.value = item.appearance;
-    promptBox.textContent = item.prompt;
-    results.classList.add('show');
-    hideValidation();
-    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-
-  renderHistory(); // Run on load
-
-  // --- GENERATE LOGIC ---
   generateBtn.addEventListener('click', function () {
     hideValidation();
     errorBox.classList.remove('show');
@@ -874,13 +958,9 @@
         stopLoading();
         generateBtn.disabled = false;
         if (!prompt) throw new Error('Empty response');
-        
         promptBox.textContent = prompt;
         results.classList.add('show');
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        
-        // Save to Vault!
-        saveToHistory(postText.value.trim(), appearanceText.value.trim(), prompt);
       })
       .catch(function (error) {
         console.error('Fetch Error:', error);
@@ -914,11 +994,6 @@
     document.body.removeChild(ta);
     done();
   }
-
-  regenerateBtn.addEventListener('click', function () {
-    results.classList.remove('show');
-    generateBtn.click();
-  });
 
   restartBtn.addEventListener('click', function () {
     postText.value = '';
