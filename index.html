@@ -301,6 +301,99 @@
     line-height: 1.75;
   }
 
+  /* ---------- MODE SELECTOR ---------- */
+  .mode-selector {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .mode-card {
+    flex: 1;
+    background: rgba(255,255,255,0.45);
+    border: 2px solid rgba(36,33,36,0.15);
+    border-radius: 20px;
+    padding: 28px 22px;
+    cursor: pointer;
+    transition: border-color 0.25s, background 0.25s, transform 0.15s;
+    text-align: center;
+    position: relative;
+  }
+
+  .mode-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+
+  .mode-card.active {
+    border-color: var(--fuchsia);
+    background: rgba(233,30,112,0.06);
+    box-shadow: 0 4px 18px rgba(233,30,112,0.12);
+  }
+
+  .mode-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+  }
+
+  .mode-card.active .mode-icon {
+    background: var(--fuchsia);
+  }
+
+  .mode-icon svg { width: 26px; height: 26px; stroke: var(--cream); fill: none; }
+
+  .mode-label {
+    font-weight: 700;
+    font-size: 1.08rem;
+    color: var(--black);
+    margin-bottom: 6px;
+  }
+
+  .mode-desc {
+    font-size: 0.88rem;
+    color: #5a5560;
+    line-height: 1.5;
+  }
+
+  .mode-check {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid rgba(36,33,36,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .mode-card.active .mode-check {
+    background: var(--fuchsia);
+    border-color: var(--fuchsia);
+  }
+
+  .mode-check svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; opacity: 0; }
+  .mode-card.active .mode-check svg { opacity: 1; }
+
+  .photo-section { transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; max-height: 1200px; opacity: 1; overflow: hidden; }
+  .photo-section.collapsed { max-height: 0; opacity: 0; margin-bottom: 0 !important; pointer-events: none; }
+
+  .appearance-section { transition: max-height 0.4s ease, opacity 0.3s ease; max-height: 600px; opacity: 1; overflow: hidden; }
+  .appearance-section.collapsed { max-height: 0; opacity: 0; margin-bottom: 0 !important; pointer-events: none; }
+
+  @media (max-width: 640px) {
+    .mode-selector { flex-direction: column; gap: 12px; }
+    .mode-card { padding: 22px 18px; }
+  }
+
   /* ---------- FORM BODY ---------- */
   .form-body { padding: 72px 0 90px; }
 
@@ -633,7 +726,7 @@
       <button class="gate-btn" id="codeBtn" type="button">Unlock the Studio 🔓</button>
       <p class="gate-error" id="codeError"></p>
     </div>
-    <p class="gate-footer">Powered by The Elite Vault</p>
+    <p class="gate-footer">Powered by The Elite Vault™</p>
   </div>
 </div>
 
@@ -647,18 +740,39 @@
     <p class="tagline">Stop letting weak visuals water down your strong content.</p>
     <h1>The <span class="accent">Vision</span> Studio ✨</h1>
     <p class="hero-subhead">When the visual matches the message, people don't just see your post. They feel it.</p>
-    <p class="hero-copy">Upload your reference photo and paste your post. The Vision Studio reads the message, mood, and emotion behind your words, then creates a detailed, ready-to-copy prompt for the AI image generator of your choice.</p>
+    <p class="hero-copy">Upload your reference photo or go photo-free. Paste your post. The Vision Studio reads the message, mood, and emotion behind your words, then creates a detailed, ready-to-copy prompt for the AI image generator of your choice.</p>
   </div>
 </header>
 
 <main class="form-body">
   <div class="wrap">
 
+    <!-- Mode Selector -->
+    <div class="mode-selector">
+      <div class="mode-card active" id="modeMe" tabindex="0" role="button" aria-pressed="true">
+        <div class="mode-check"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="mode-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div class="mode-label">Put Me in the Scene</div>
+        <div class="mode-desc">Upload your reference photo and the prompt will feature you.</div>
+      </div>
+      <div class="mode-card" id="modeScene" tabindex="0" role="button" aria-pressed="false">
+        <div class="mode-check"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="mode-icon">
+          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="mode-label">Set the Scene Without Me</div>
+        <div class="mode-desc">Quote visuals, styled scenes, or mood imagery — no person needed.</div>
+      </div>
+    </div>
+
+    <div class="photo-section" id="photoSection">
     <div class="photo-grid">
       <!-- Photo 1 -->
       <section>
         <div class="field-label">Upload Your Reference Photo</div>
-        <p class="helper">Want yourself in the image? Upload a clear, well-lit photo of your face. Skip this if the visual doesn't need you in it — quotes, scenes, and styled flat lays work too.</p>
+        <p class="helper">Upload a clear, well-lit photo of your face. We use this to anchor your likeness, while the AI builds a completely new setting, outfit, and pose around you.</p>
         <div class="dropzone" id="dz1" tabindex="0" role="button" aria-label="Upload your reference photo">
           <div class="cam-circle" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
@@ -699,6 +813,7 @@
     </div>
 
     <p style="font-size:0.82rem; color:#7a7480; text-align:center; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.6;"><strong style="color:#4a4550;">Your photos stay private.</strong> If you upload a reference photo, it is previewed only in your browser and is never uploaded to The Vision Studio, Make, or our servers. When your prompt is ready, you'll attach your reference photo directly in the AI image generator you choose.</p>
+    </div>
 
     <!-- Post -->
     <section class="text-field">
@@ -708,7 +823,7 @@
     </section>
 
     <!-- Appearance -->
-    <section class="text-field">
+    <section class="text-field appearance-section" id="appearanceSection">
       <div class="field-label">Anything Important About Your Appearance?</div>
       <p class="helper">Add details the reference photo may not clearly show or anything you want consistently included.</p>
       <textarea id="appearanceText" class="small" aria-label="Appearance details" placeholder="Curvy body type, long blonde locs, gold hoop earrings, and wearing a tailored fuchsia blazer."></textarea>
@@ -739,7 +854,7 @@
   </div>
 </main>
 
-<footer>The Vision Studio ✨ · Powered by The Elite Vault</footer>
+<footer>The Vision Studio ✨ · Powered by The Elite Vault™</footer>
 
 </div><!-- /app -->
 
@@ -787,6 +902,37 @@
   }
 
   /* ============ MAIN APP ============ */
+  /* ============ MODE SELECTOR ============ */
+  var modeMe = document.getElementById('modeMe');
+  var modeScene = document.getElementById('modeScene');
+  var photoSection = document.getElementById('photoSection');
+  var appearanceSection = document.getElementById('appearanceSection');
+  var currentMode = 'person';
+
+  function setMode(mode) {
+    currentMode = mode;
+    if (mode === 'person') {
+      modeMe.classList.add('active');
+      modeMe.setAttribute('aria-pressed', 'true');
+      modeScene.classList.remove('active');
+      modeScene.setAttribute('aria-pressed', 'false');
+      photoSection.classList.remove('collapsed');
+      appearanceSection.classList.remove('collapsed');
+    } else {
+      modeScene.classList.add('active');
+      modeScene.setAttribute('aria-pressed', 'true');
+      modeMe.classList.remove('active');
+      modeMe.setAttribute('aria-pressed', 'false');
+      photoSection.classList.add('collapsed');
+      appearanceSection.classList.add('collapsed');
+    }
+  }
+
+  modeMe.addEventListener('click', function () { setMode('person'); });
+  modeScene.addEventListener('click', function () { setMode('scene'); });
+  modeMe.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMode('person'); } });
+  modeScene.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMode('scene'); } });
+
   var WEBHOOK_URL = 'https://hook.us2.make.com/cyk19qef0zkqgna93phi28emm4cb5xo3';
   var MAX_BYTES = 5 * 1024 * 1024;
   var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
@@ -952,8 +1098,9 @@
         'Accept': 'application/json'
       },
       body: JSON.stringify({
+        image_mode: currentMode,
         written_post: postText.value.trim(),
-        appearance_details: appearanceText.value.trim()
+        appearance_details: currentMode === 'person' ? appearanceText.value.trim() : ''
       }),
       mode: 'cors'
     })
