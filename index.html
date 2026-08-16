@@ -843,7 +843,7 @@
 
     <section class="results" id="results">
       <h2 class="results-label">Your Directed Image Prompt</h2>
-      <p class="results-sub">Copy this into the AI image generator of your choice, alongside your reference photo.</p>
+      <p class="results-sub" id="resultsSub">Copy this into the AI image generator of your choice, alongside your reference photo.</p>
       <div class="prompt-box" id="promptBox"></div>
       <div class="results-controls">
         <button class="copy-btn" id="copyBtn" type="button">Copy Prompt</button>
@@ -958,6 +958,7 @@
   var loadingMsg = document.getElementById('loadingMsg');
   var results = document.getElementById('results');
   var promptBox = document.getElementById('promptBox');
+  var resultsSub = document.getElementById('resultsSub');
   var copyBtn = document.getElementById('copyBtn');
   var restartBtn = document.getElementById('restartBtn');
   var errorBox = document.getElementById('errorBox');
@@ -1114,6 +1115,9 @@
         generateBtn.disabled = false;
         if (!prompt) throw new Error('Empty response');
         promptBox.textContent = prompt;
+        resultsSub.textContent = currentMode === 'person'
+          ? 'Copy this into the AI image generator of your choice, alongside your reference photo.'
+          : 'Copy this into the AI image generator of your choice.';
         results.classList.add('show');
         results.scrollIntoView({ behavior: 'smooth', block: 'start' });
       })
