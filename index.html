@@ -2,1177 +2,1014 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Vision Studio ✨ | AI Image Prompt Generator</title>
-<meta name="description" content="Turn your marketing message into a compelling, ready-to-copy AI image prompt with The Vision Studio.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="The Vision Studio ✨">
-<meta property="og:description" content="Turn your marketing message into a compelling, ready-to-copy AI image prompt.">
-<meta property="og:url" content="https://elite-vault-tm.github.io/vision-studio/">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="The Vision Studio ✨">
-<meta name="twitter:description" content="Turn your marketing message into a compelling, ready-to-copy AI image prompt.">
-<meta name="theme-color" content="#050505">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>✨</text></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Turn Your Experience Into Content | The Elite Vault</title>
+<meta name="description" content="Turn Your Experience Into Content — stop sounding like everybody else. A guided tool from The Elite Vault that helps experienced women entrepreneurs shape what they already know into one recognizable piece of content.">
+<link rel="canonical" href="https://elite-vault-tm.github.io/experience-to-content/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #EDE3D4;
-    --black: #050505;
-    --charcoal: #242124;
-    --fuchsia: #E91E70;
-    --gold: #D4A11E;
-    --radius: 16px;
-    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  :root{
+    --cream:#EDE3D4;
+    --black:#050505;
+    --charcoal:#242124;
+    --fuchsia:#E91E70;
+    --gold:#D4A11E;
+    --input-bg:#FFFDF9;
+    --line: rgba(36,33,36,0.28);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    color:var(--black);
+    font-family:'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:500;
+    letter-spacing:-0.015em;
+  }
+  .app{
+    max-width:560px;
+    margin:0 auto;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    position:relative;
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--cream);
-    color: var(--charcoal);
-    font-family: var(--sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
+  /* ---------- HERO / TOP BAND ---------- */
+  .hero{
+    background:var(--black);
+    color:var(--cream);
+    position:relative;
+    overflow:hidden;
+    padding:40px 28px 32px;
+  }
+  .hero-rings{
+    position:absolute;
+    top:-70px;
+    right:-70px;
+    width:220px;
+    height:220px;
+    pointer-events:none;
+  }
+  .hero-rings svg{width:100%;height:100%;display:block;}
+  .hero-quote{
+    position:absolute;
+    bottom:-18px;
+    left:18px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:96px;
+    line-height:1;
+    color:rgba(212,161,30,0.16);
+    pointer-events:none;
+    user-select:none;
+    z-index:1;
+  }
+  .tagline{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:0.24em;
+    font-size:11px;
+    font-weight:600;
+    position:relative;
+    z-index:2;
+  }
+  .tagline::before{
+    content:'';
+    width:28px;
+    height:1.5px;
+    background:var(--gold);
+    flex-shrink:0;
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:32px;
+    line-height:1.1;
+    margin:18px 0 4px;
+    position:relative;
+    z-index:2;
+    max-width:420px;
+  }
+  .hero .hero-subtitle{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    letter-spacing:0.01em;
+    color:var(--fuchsia);
+    margin:0 0 14px;
+    position:relative;
+    z-index:2;
+  }
+  .hero p.sub{
+    font-size:15px;
+    line-height:1.5;
+    color:rgba(237,227,212,0.78);
+    margin:0;
+    max-width:400px;
+    position:relative;
+    z-index:2;
   }
 
-  .wrap {
-    max-width: 1160px;
-    margin: 0 auto;
-    padding: 0 24px;
+  /* ---------- PROGRESS ---------- */
+  .progress-wrap{
+    padding:18px 28px 0;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .progress-label{
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--charcoal);
+    opacity:0.6;
+    white-space:nowrap;
+  }
+  .progress-track{
+    flex:1;
+    height:4px;
+    background:rgba(5,5,5,0.1);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:var(--fuchsia);
+    border-radius:4px;
+    transition:width 0.35s ease;
   }
 
-  /* ============ ACCESS GATE ============ */
-  .gate {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--black);
-    position: relative;
-    overflow: hidden;
+  /* ---------- SCREENS ---------- */
+  .screens{
+    flex:1;
+    padding:26px 28px 120px;
+    position:relative;
+  }
+  .screen{
+    display:none;
+    animation:fadeUp 0.35s ease;
+  }
+  .screen.active{display:block;}
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
   }
 
-  .gate.hidden { display: none; }
+  .eyebrow{
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--fuchsia);
+    font-weight:700;
+    margin:0 0 10px;
+  }
+  .screen h2{
+    font-size:24px;
+    line-height:1.25;
+    margin:0 0 10px;
+  }
+  .screen h2 .accent{color:var(--fuchsia);}
+  .helper{
+    font-size:14.5px;
+    line-height:1.6;
+    color:#4a4550;
+    margin:0 0 20px;
+  }
+  .welcome-copy{
+    font-size:15.5px;
+    line-height:1.7;
+    color:#4a4550;
+    margin:18px 0 26px;
+  }
+  .welcome-copy p{margin:0 0 12px;}
 
-  .gate-deco {
-    position: absolute;
-    top: -140px;
-    right: -160px;
-    width: 480px;
-    height: 480px;
-    border: 1.5px solid rgba(212,161,30,0.55);
-    border-radius: 50%;
-    pointer-events: none;
+  textarea, input[type=text]{
+    width:100%;
+    background:var(--input-bg);
+    border:1.5px solid var(--line);
+    border-radius:20px;
+    padding:18px 20px;
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    color:var(--black);
+    resize:vertical;
+    transition:border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  textarea::placeholder, input[type=text]::placeholder{
+    color:#a39d9a;
+  }
+  textarea:focus, input[type=text]:focus{
+    outline:none;
+    border-color:var(--fuchsia);
+    box-shadow:0 0 0 3px rgba(233,30,112,0.12);
+  }
+  textarea{min-height:160px;}
+  textarea.small{min-height:110px;}
+
+  .field-error{
+    color:var(--fuchsia);
+    font-size:13px;
+    margin-top:8px;
+    display:none;
+  }
+  .field-error.show{display:block;}
+
+  /* goal cards */
+  .goal-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .goal-card{
+    background:var(--input-bg);
+    border:1.5px solid var(--line);
+    border-radius:20px;
+    padding:18px 14px;
+    text-align:left;
+    cursor:pointer;
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:16px;
+    color:var(--black);
+    transition:all 0.15s ease;
+  }
+  .goal-card:hover{border-color:var(--fuchsia);}
+  .goal-card.selected{
+    border-color:var(--fuchsia);
+    background:rgba(233,30,112,0.06);
+    box-shadow:0 0 0 1px var(--fuchsia) inset;
   }
 
-  .gate-deco::after {
-    content: '';
-    position: absolute;
-    inset: 70px;
-    border: 1.5px solid rgba(212,161,30,0.35);
-    border-radius: 50%;
+  .skip-link{
+    display:inline-block;
+    margin-top:14px;
+    font-size:13.5px;
+    color:var(--charcoal);
+    opacity:0.7;
+    text-decoration:underline;
+    cursor:pointer;
+    background:none;
+    border:none;
+    padding:0;
+    font-family:'Inter', sans-serif;
   }
 
-  .gate-dot {
-    position: absolute;
-    bottom: 80px;
-    left: 60px;
-    width: 12px;
-    height: 12px;
-    background: var(--fuchsia);
-    border-radius: 50%;
-    pointer-events: none;
+  /* ---------- NAV BAR (fixed bottom) ---------- */
+  .nav-bar{
+    position:fixed;
+    left:0; right:0; bottom:0;
+    max-width:560px;
+    margin:0 auto;
+    background:linear-gradient(to top, var(--cream) 65%, rgba(237,227,212,0));
+    padding:22px 28px 24px;
+    display:flex;
+    gap:12px;
+    z-index:5;
   }
-
-  .gate-card {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 480px;
-    padding: 24px;
+  .btn{
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    border-radius:50px;
+    border:none;
+    cursor:pointer;
+    padding:16px 22px;
+    transition:transform 0.15s ease, box-shadow 0.2s ease, opacity 0.12s ease;
   }
-
-  .gate-tagline {
-    display: inline-flex;
-    align-items: center;
-    gap: 14px;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    font-size: 0.72rem;
-    font-weight: 600;
-    margin-bottom: 28px;
+  .btn:active{transform:scale(0.98);}
+  .btn-primary{
+    background:var(--fuchsia);
+    color:#fff;
+    flex:1;
+    box-shadow:0 8px 20px rgba(233,30,112,0.3);
   }
-
-  .gate-tagline::before,
-  .gate-tagline::after {
-    content: '';
-    width: 36px;
-    height: 1.5px;
-    background: var(--gold);
-    flex-shrink: 0;
+  .btn-primary:hover:not(:disabled){
+    transform:translateY(-1px);
+    box-shadow:0 10px 26px rgba(233,30,112,0.4);
   }
-
-  .gate-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(2.6rem, 8vw, 4.4rem);
-    color: var(--cream);
-    letter-spacing: -0.015em;
-    line-height: 1.1;
-    margin-bottom: 16px;
+  .btn-primary:disabled{
+    opacity:0.35;
+    cursor:not-allowed;
+    box-shadow:none;
   }
-
-  .gate-title .accent { color: var(--fuchsia); }
-
-  .gate-sub {
-    font-size: 1.05rem;
-    color: rgba(237,227,212,0.8);
-    margin-bottom: 40px;
-    line-height: 1.6;
+  .btn-secondary{
+    background:transparent;
+    color:var(--black);
+    border:1.5px solid var(--line);
+    padding:15px 20px;
+    font-weight:600;
   }
+  .btn-full{width:100%;}
 
-  .gate-input-wrap {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    align-items: center;
+  /* welcome screen button standalone (no nav bar there) */
+  .welcome-btn{
+    background:var(--fuchsia);
+    color:#fff;
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    border:none;
+    border-radius:50px;
+    padding:18px 26px;
+    width:100%;
+    cursor:pointer;
+    box-shadow:0 8px 24px rgba(233,30,112,0.32);
+    transition:transform 0.15s ease, box-shadow 0.2s ease;
   }
-
-  .gate-input {
-    width: 100%;
-    max-width: 340px;
-    padding: 16px 22px;
-    border: 1.5px solid rgba(212,161,30,0.5);
-    border-radius: 50px;
-    background: rgba(255,255,255,0.06);
-    color: var(--cream);
-    font-family: var(--sans);
-    font-size: 1.05rem;
-    font-weight: 500;
-    text-align: center;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
+  .welcome-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 30px rgba(233,30,112,0.42);
   }
-
-  .gate-input::placeholder {
-    color: rgba(237,227,212,0.35);
-    letter-spacing: 0.1em;
-    text-transform: none;
-  }
-
-  .gate-input:focus {
-    outline: none;
-    border-color: var(--fuchsia);
-    box-shadow: 0 0 0 3px rgba(233,30,112,0.2);
-  }
-
-  .gate-btn {
-    width: 100%;
-    max-width: 340px;
-    background: var(--fuchsia);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 16px 28px;
-    font-family: var(--sans);
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 6px 20px rgba(233,30,112,0.35);
-  }
-
-  .gate-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(233,30,112,0.45);
-  }
-
-  .gate-error {
-    color: var(--fuchsia);
-    font-size: 0.88rem;
-    font-weight: 600;
-    margin-top: 8px;
-    min-height: 24px;
-  }
-
-  .gate-footer {
-    margin-top: 48px;
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-  }
-
-  /* ============ MAIN APP ============ */
-  .app { display: none; }
-  .app.show { display: block; }
-
-  /* ---------- DARK HERO ---------- */
-  .hero {
-    background: var(--black);
-    color: var(--cream);
-    position: relative;
-    overflow: hidden;
-    padding: 96px 0 110px;
-  }
-
-  .hero-deco {
-    position: absolute;
-    top: -140px;
-    right: -160px;
-    width: 480px;
-    height: 480px;
-    border: 1.5px solid rgba(212,161,30,0.55);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  .hero-deco::after {
-    content: '';
-    position: absolute;
-    inset: 70px;
-    border: 1.5px solid rgba(212,161,30,0.35);
-    border-radius: 50%;
-  }
-
-  .hero-dot {
-    position: absolute;
-    top: 120px;
-    right: 60px;
-    width: 12px;
-    height: 12px;
-    background: var(--fuchsia);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  .tagline {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    font-size: 0.82rem;
-    font-weight: 600;
-    margin-bottom: 28px;
-  }
-
-  .tagline::before {
-    content: '';
-    width: 56px;
-    height: 1.5px;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-
-  h1 {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(3rem, 9.5vw, 7.2rem);
-    color: var(--cream);
-    letter-spacing: -0.015em;
-    line-height: 1.05;
-    margin-bottom: 40px;
-  }
-
-  h1 .accent { color: var(--fuchsia); }
-
-  .hero-subhead {
-    font-family: var(--sans);
-    font-weight: 700;
-    font-size: clamp(1.3rem, 2.6vw, 1.85rem);
-    color: #ffffff;
-    line-height: 1.35;
-    max-width: 620px;
-    margin-bottom: 28px;
-  }
-
-  .hero-copy {
-    font-size: clamp(1rem, 1.6vw, 1.2rem);
-    color: rgba(237,227,212,0.88);
-    max-width: 620px;
-    line-height: 1.75;
-  }
-
-  /* ---------- MODE SELECTOR ---------- */
-  .mode-selector {
-    display: flex;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-
-  .mode-card {
-    flex: 1;
-    background: rgba(255,255,255,0.45);
-    border: 2px solid rgba(36,33,36,0.15);
-    border-radius: 20px;
-    padding: 28px 22px;
-    cursor: pointer;
-    transition: border-color 0.25s, background 0.25s, transform 0.15s;
-    text-align: center;
-    position: relative;
-  }
-
-  .mode-card:hover {
-    border-color: var(--gold);
-    transform: translateY(-2px);
-  }
-
-  .mode-card.active {
-    border-color: var(--fuchsia);
-    background: rgba(233,30,112,0.06);
-    box-shadow: 0 4px 18px rgba(233,30,112,0.12);
-  }
-
-  .mode-icon {
-    width: 56px;
-    height: 56px;
-    background: var(--black);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 16px;
-  }
-
-  .mode-card.active .mode-icon {
-    background: var(--fuchsia);
-  }
-
-  .mode-icon svg { width: 26px; height: 26px; stroke: var(--cream); fill: none; }
-
-  .mode-label {
-    font-weight: 700;
-    font-size: 1.08rem;
-    color: var(--black);
-    margin-bottom: 6px;
-  }
-
-  .mode-desc {
-    font-size: 0.88rem;
-    color: #5a5560;
-    line-height: 1.5;
-  }
-
-  .mode-check {
-    position: absolute;
-    top: 14px;
-    right: 14px;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid rgba(36,33,36,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s, border-color 0.2s;
-  }
-
-  .mode-card.active .mode-check {
-    background: var(--fuchsia);
-    border-color: var(--fuchsia);
-  }
-
-  .mode-check svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2.5; fill: none; opacity: 0; }
-  .mode-card.active .mode-check svg { opacity: 1; }
-
-  .photo-section { transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; max-height: 1200px; opacity: 1; overflow: hidden; }
-  .photo-section.collapsed { max-height: 0; opacity: 0; margin-bottom: 0 !important; pointer-events: none; }
-
-  .appearance-section { transition: max-height 0.4s ease, opacity 0.3s ease; max-height: 600px; opacity: 1; overflow: hidden; }
-  .appearance-section.collapsed { max-height: 0; opacity: 0; margin-bottom: 0 !important; pointer-events: none; }
-
-  @media (max-width: 640px) {
-    .mode-selector { flex-direction: column; gap: 12px; }
-    .mode-card { padding: 22px 18px; }
-  }
-
-  /* ---------- FORM BODY ---------- */
-  .form-body { padding: 72px 0 90px; }
-
-  .photo-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    margin-bottom: 48px;
-  }
-
-  @media (min-width: 860px) {
-    .photo-grid { grid-template-columns: 1fr 1fr; gap: 56px; }
-  }
-
-  .field-label {
-    font-weight: 700;
-    font-size: 1.28rem;
-    color: var(--black);
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .req-star { color: var(--fuchsia); font-weight: 700; margin-left: 2px; }
-
-  .helper {
-    font-size: 0.98rem;
-    color: #4a4550;
-    margin-bottom: 20px;
-    max-width: 560px;
-  }
-
-  /* ---------- DROPZONES ---------- */
-  .dropzone {
-    border: 2px dashed var(--gold);
-    border-radius: 20px;
-    padding: 56px 24px 40px;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
-    background: transparent;
-  }
-
-  .dropzone:hover, .dropzone:focus-visible, .dropzone.dragover {
-    background: rgba(212,161,30,0.08);
-    border-color: var(--fuchsia);
-    outline: none;
-  }
-
-  .cam-circle {
-    width: 76px;
-    height: 76px;
-    background: var(--black);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-  }
-
-  .cam-circle svg { width: 32px; height: 32px; stroke: var(--cream); }
-
-  .dropzone-text {
-    font-weight: 700;
-    color: var(--black);
-    font-size: 1.15rem;
-    display: block;
-    margin-bottom: 14px;
-  }
-
-  .file-limits {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.92rem;
-    color: #4a4550;
-  }
-
-  .file-limits svg { width: 17px; height: 17px; stroke: #4a4550; flex-shrink: 0; }
-
-  .preview-wrap {
-    display: none;
-    position: relative;
-  }
-
-  .preview-wrap.show { display: block; }
-
-  .preview-img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 20px;
-    border: 1.5px solid var(--gold);
-    display: block;
-  }
-
-  .remove-btn {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: var(--black);
-    color: var(--cream);
-    border: none;
-    border-radius: 50px;
-    padding: 8px 16px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    font-family: var(--sans);
-  }
-
-  .remove-btn:hover { background: var(--fuchsia); }
-
-  input[type="file"] { display: none; }
-
-  /* ---------- TEXT FIELDS ---------- */
-  .text-field { margin-bottom: 48px; }
-
-  textarea {
-    width: 100%;
-    min-height: 190px;
-    padding: 20px;
-    border: 1.5px solid rgba(36,33,36,0.28);
-    border-radius: 20px;
-    font-family: var(--sans);
-    font-size: 1rem;
-    color: var(--black);
-    background: #fffdf9;
-    resize: vertical;
-    line-height: 1.65;
-  }
-
-  textarea:focus {
-    outline: none;
-    border-color: var(--fuchsia);
-    box-shadow: 0 0 0 3px rgba(233,30,112,0.12);
-  }
-
-  textarea.small { min-height: 120px; }
-  textarea::placeholder { color: #a39d9a; }
-
-  /* ---------- BUTTON ---------- */
-  .generate-btn {
-    display: block;
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-    background: var(--fuchsia);
-    color: #fff;
-    border: none;
-    border-radius: 50px;
-    padding: 20px 32px;
-    font-family: var(--sans);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
-    box-shadow: 0 8px 24px rgba(233,30,112,0.32);
-  }
-
-  .generate-btn:hover:not(:disabled) {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(233,30,112,0.42);
-  }
-
-  .generate-btn:disabled {
-    background: #b9a9b2;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-
-  .validation-msg {
-    display: none;
-    text-align: center;
-    color: var(--fuchsia);
-    font-size: 0.92rem;
-    font-weight: 600;
-    margin-top: 16px;
-  }
-
-  .validation-msg.show { display: block; }
 
   /* ---------- LOADING ---------- */
-  .loading { display: none; text-align: center; margin-top: 32px; }
-  .loading.show { display: block; }
-
-  .spinner {
-    width: 38px;
-    height: 38px;
-    border: 3px solid rgba(212,161,30,0.3);
-    border-top-color: var(--gold);
-    border-radius: 50%;
-    margin: 0 auto 16px;
-    animation: spin 0.9s linear infinite;
+  .loading-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:80px 20px;
+    text-align:center;
   }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  @media (prefers-reduced-motion: reduce) {
-    .spinner { animation-duration: 2.5s; }
-    .generate-btn, .gate-btn { transition: none; }
+  .spinner{
+    width:44px;height:44px;
+    border-radius:50%;
+    border:3px solid rgba(5,5,5,0.1);
+    border-top-color:var(--fuchsia);
+    animation:spin 0.9s linear infinite;
+    margin-bottom:22px;
   }
-
-  .loading-msg {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.15rem;
-    color: var(--charcoal);
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .loading-text{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:17px;
+    color:var(--charcoal);
   }
 
   /* ---------- RESULTS ---------- */
-  .results {
-    display: none;
-    margin-top: 48px;
-    background: var(--black);
-    border: 1px solid var(--gold);
-    border-radius: 20px;
-    padding: 40px 32px;
+  .result-block{
+    background:var(--input-bg);
+    border:1.5px solid var(--line);
+    border-radius:20px;
+    padding:24px;
+    margin-bottom:16px;
+  }
+  .result-label{
+    font-size:11.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:700;
+    margin:0 0 14px;
+  }
+  .angle-block{
+    background:var(--input-bg);
+    border:1.5px solid var(--line);
+    border-left:3px solid var(--fuchsia);
+    border-radius:20px;
+    padding:24px 24px 24px 22px;
+    margin-bottom:16px;
+    position:relative;
+  }
+  .angle-quote-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:44px;
+    line-height:0.6;
+    color:var(--fuchsia);
+    opacity:0.35;
+    display:block;
+    margin-bottom:4px;
+  }
+  .angle-text{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:19.5px;
+    line-height:1.45;
+    margin:0 0 16px;
+  }
+  .why-label{
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-weight:700;
+    color:var(--fuchsia);
+    margin:0 0 4px;
+  }
+  .why-text{
+    font-size:14.5px;
+    line-height:1.6;
+    color:var(--charcoal);
+    margin:0;
+  }
+  .hook-item{
+    border-top:1px solid var(--line);
+    padding:14px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:12px;
+  }
+  .hook-item:first-of-type{border-top:none; padding-top:0;}
+  .hook-tag{
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--fuchsia);
+    font-weight:700;
+    margin:0 0 6px;
+  }
+  .hook-text{
+    font-size:15px;
+    line-height:1.5;
+    margin:0;
+  }
+  .draft-text{
+    font-size:15.5px;
+    line-height:1.7;
+    white-space:pre-wrap;
+    margin:0;
+  }
+  .prompt-text{
+    font-size:13.5px;
+    line-height:1.6;
+    white-space:pre-wrap;
+    color:var(--charcoal);
+    background:transparent;
+    margin:0;
+    font-family:'Inter', sans-serif;
+  }
+  .copy-btn{
+    flex-shrink:0;
+    background:var(--fuchsia);
+    color:#fff;
+    border:none;
+    border-radius:50px;
+    padding:9px 16px;
+    font-size:12.5px;
+    font-weight:700;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .copy-btn.copied{background:var(--black);}
+  .copy-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:14px;
   }
 
-  .results.show { display: block; }
-
-  .results-label {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 1.7rem;
-    color: var(--cream);
-    margin-bottom: 6px;
+  /* vision studio handoff */
+  .vision-card{
+    background:var(--black);
+    color:var(--cream);
+    border-radius:20px;
+    padding:28px 24px;
+    text-align:center;
+    margin:26px 0 10px;
+  }
+  .vision-card h3{
+    font-size:20px;
+    margin:0 0 8px;
+    color:var(--cream);
+  }
+  .vision-card p{
+    font-size:14px;
+    color:rgba(237,227,212,0.75);
+    margin:0 0 20px;
+    line-height:1.5;
+  }
+  .vision-btn{
+    display:inline-block;
+    background:var(--fuchsia);
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:14.5px;
+    padding:15px 26px;
+    border-radius:50px;
+    box-shadow:0 8px 22px rgba(233,30,112,0.38);
+    transition:transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .vision-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 28px rgba(233,30,112,0.48);
   }
 
-  .results-sub {
-    font-size: 0.9rem;
-    color: rgba(237,227,212,0.65);
-    margin-bottom: 24px;
+  .start-over{
+    display:block;
+    text-align:center;
+    margin:20px auto 0;
+    font-size:13.5px;
+    color:var(--charcoal);
+    opacity:0.7;
+    text-decoration:underline;
+    cursor:pointer;
+    background:none;
+    border:none;
   }
 
-  .prompt-box {
-    background: rgba(237,227,212,0.06);
-    border: 1px solid rgba(212,161,30,0.4);
-    border-radius: 14px;
-    padding: 24px;
-    color: var(--cream);
-    font-size: 0.98rem;
-    line-height: 1.75;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    max-height: 520px;
-    overflow-y: auto;
+  .footer-mark{
+    text-align:center;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    padding:20px 0 40px;
   }
 
-  .results-controls {
-    display: flex;
-    gap: 14px;
-    margin-top: 24px;
-    flex-wrap: wrap;
+  .error-banner{
+    background:rgba(233,30,112,0.08);
+    border:1.5px solid var(--fuchsia);
+    color:var(--black);
+    border-radius:14px;
+    padding:16px;
+    font-size:14px;
+    line-height:1.5;
+    margin-bottom:16px;
   }
 
-  .copy-btn, .restart-btn {
-    flex: 1;
-    min-width: 150px;
-    border-radius: 50px;
-    padding: 15px 22px;
-    font-family: var(--sans);
-    font-size: 0.98rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .copy-btn { background: var(--fuchsia); color: #fff; border: none; }
-  .copy-btn:hover { background: #c81560; }
-
-  .restart-btn {
-    background: transparent;
-    color: var(--cream);
-    border: 1.5px solid var(--gold);
-  }
-
-  .restart-btn:hover { background: rgba(212,161,30,0.15); }
-
-  .error-box {
-    display: none;
-    margin-top: 32px;
-    background: #fff;
-    border: 1.5px solid var(--fuchsia);
-    border-radius: 20px;
-    padding: 24px;
-    color: var(--charcoal);
-    font-size: 0.95rem;
-    text-align: center;
-  }
-
-  .error-box.show { display: block; }
-
-  footer {
-    text-align: center;
-    padding: 0 24px 56px;
-    font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-  }
-
-  @media (max-width: 640px) {
-    .hero { padding: 64px 0 72px; }
-    .hero-deco, .gate-deco { width: 300px; height: 300px; top: -110px; right: -130px; }
-    .hero-deco::after, .gate-deco::after { inset: 44px; }
-    .hero-dot { top: 70px; right: 30px; width: 9px; height: 9px; }
-    .gate-dot { bottom: 40px; left: 30px; width: 9px; height: 9px; }
-    .tagline { letter-spacing: 0.2em; font-size: 0.7rem; gap: 12px; }
-    .tagline::before { width: 34px; }
-    .form-body { padding: 48px 0 64px; }
-    .preview-img { height: 260px; }
+  @media (max-width:380px){
+    .hero{padding:30px 20px 24px;}
+    .screens{padding:22px 20px 120px;}
+    .nav-bar{padding:18px 20px 20px;}
+    .goal-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
 <body>
+<div class="app">
 
-<!-- ============ ACCESS GATE ============ -->
-<div class="gate" id="gate">
-  <div class="gate-deco" aria-hidden="true"></div>
-  <div class="gate-dot" aria-hidden="true"></div>
-  <div class="gate-card">
-    <span class="gate-tagline">Exclusive Access</span>
-    <h2 class="gate-title">The <span class="accent">Vision</span> Studio ✨</h2>
-    <p class="gate-sub">Enter your access code below to unlock the studio. Your code was included with your purchase confirmation.</p>
-    <div class="gate-input-wrap">
-      <input type="text" class="gate-input" id="codeInput" placeholder="Enter access code" autocomplete="off" spellcheck="false">
-      <button class="gate-btn" id="codeBtn" type="button">Unlock the Studio 🔓</button>
-      <p class="gate-error" id="codeError"></p>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-rings">
+      <svg viewBox="0 0 220 220">
+        <circle cx="150" cy="70" r="80" fill="none" stroke="#D4A11E" stroke-opacity="0.35" stroke-width="1"/>
+        <circle cx="150" cy="70" r="58" fill="none" stroke="#D4A11E" stroke-opacity="0.5" stroke-width="1"/>
+        <circle cx="150" cy="70" r="36" fill="none" stroke="#D4A11E" stroke-opacity="0.65" stroke-width="1"/>
+        <circle cx="150" cy="70" r="6" fill="#E91E70"/>
+      </svg>
     </div>
-    <p class="gate-footer">Powered by The Elite Vault</p>
+    <div class="hero-quote" aria-hidden="true">&#8220;</div>
+    <p class="tagline">The Elite Vault</p>
+    <h1 id="heroTitle">Turn Your Experience Into Content</h1>
+    <p class="hero-subtitle" id="heroSubtitle">Stop Sounding Like Everybody Else</p>
+    <p class="sub" id="heroSub">You already have the experience. Let's turn it into content people can recognize you in.</p>
   </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap" id="progressWrap" style="display:none;">
+    <span class="progress-label" id="progressLabel">1 of 4</span>
+    <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%;"></div></div>
+  </div>
+
+  <div class="screens" id="screens">
+
+    <!-- SCREEN: WELCOME -->
+    <div class="screen active" data-screen="welcome">
+      <div class="welcome-copy">
+        <p>I know what it's like to have something real to say and still end up with content that doesn't sound like me.</p>
+        <p>Your story, your experience, your point of view. That's the part people need to hear.</p>
+        <p>This helps you pull it out and turn it into content without losing yourself in the process.</p>
+      </div>
+      <button class="welcome-btn" onclick="goTo('idea')">Turn My Story Into Content</button>
+    </div>
+
+    <!-- SCREEN: IDEA -->
+    <div class="screen" data-screen="idea">
+      <p class="eyebrow">Step 1</p>
+      <h2>What are you trying to talk about?</h2>
+      <p class="helper">Give me the messy version. You do not have to organize it first.</p>
+      <textarea id="input-idea" placeholder="I keep noticing women in business are letting AI rewrite everything until none of it sounds like them…"></textarea>
+      <p class="field-error" id="err-idea">Tell me a bit about what's on your mind. Even messy works.</p>
+    </div>
+
+    <!-- SCREEN: AUDIENCE -->
+    <div class="screen" data-screen="audience">
+      <p class="eyebrow">Step 2</p>
+      <h2>Who are you talking to?</h2>
+      <p class="helper">Who needs to hear this?</p>
+      <input type="text" id="input-audience" placeholder="Women starting businesses after 50">
+      <p class="field-error" id="err-audience">I need to know who this is for.</p>
+    </div>
+
+    <!-- SCREEN: EXPERIENCE -->
+    <div class="screen" data-screen="experience">
+      <p class="eyebrow">Step 3</p>
+      <h2>What have <span class="accent">YOU</span> learned, noticed, experienced, or come to believe about this?</h2>
+      <p class="helper">This is the part AI cannot make up for you. Tell me what you know from living it, doing it, seeing it, or learning it.</p>
+      <textarea id="input-experience" placeholder="I've learned that the older I get, the less interested I am in copying what is trending. My experience gives me plenty to talk about. I just need help shaping it."></textarea>
+      <p class="field-error" id="err-experience">This is the heart of it. Give me a little more from your own experience.</p>
+    </div>
+
+    <!-- SCREEN: FOLLOWUP (conditional) -->
+    <div class="screen" data-screen="followup">
+      <p class="eyebrow">One more thing</p>
+      <h2 id="followupQuestion">What happened that made you feel that way?</h2>
+      <p class="helper">Just a sentence or two. This is what makes it yours.</p>
+      <textarea id="input-followup" class="small" placeholder="Tell me a little more…"></textarea>
+    </div>
+
+    <!-- SCREEN: GOAL -->
+    <div class="screen" data-screen="goal">
+      <p class="eyebrow">Step 4</p>
+      <h2>What do you want this post to do?</h2>
+      <p class="helper">Pick the one that matters most right now.</p>
+      <div class="goal-grid" id="goalGrid">
+        <button class="goal-card" data-goal="Start a Conversation">Start a Conversation</button>
+        <button class="goal-card" data-goal="Teach Something">Teach Something</button>
+        <button class="goal-card" data-goal="Build Trust">Build Trust</button>
+        <button class="goal-card" data-goal="Lead Toward an Offer">Lead Toward an Offer</button>
+      </div>
+      <p class="field-error" id="err-goal">Pick one so I know where this post is headed.</p>
+    </div>
+
+    <!-- SCREEN: VOICE SAMPLE (optional) -->
+    <div class="screen" data-screen="voice">
+      <p class="eyebrow">Optional</p>
+      <h2>Want me to get closer to your voice?</h2>
+      <p class="helper">Paste a short post, caption, or paragraph you have written before. Optional.</p>
+      <textarea id="input-voice" class="small" placeholder="Paste something you've written before…"></textarea>
+      <button class="skip-link" onclick="skipVoice()">Skip this</button>
+    </div>
+
+    <!-- SCREEN: LOADING -->
+    <div class="screen" data-screen="loading">
+      <div class="loading-wrap">
+        <div class="spinner"></div>
+        <p class="loading-text">Turning your experience into content…</p>
+      </div>
+    </div>
+
+    <!-- SCREEN: RESULTS -->
+    <div class="screen" data-screen="results">
+      <div id="errorBanner" class="error-banner" style="display:none;"></div>
+      <div id="resultsContent"></div>
+    </div>
+
+  </div>
+
+  <!-- NAV BAR -->
+  <div class="nav-bar" id="navBar">
+    <button class="btn btn-secondary" id="btnBack" onclick="goBack()">Back</button>
+    <button class="btn btn-primary" id="btnContinue" onclick="goNext()">Continue</button>
+  </div>
+
 </div>
 
-<!-- ============ MAIN APP ============ -->
-<div class="app" id="app">
-
-<header class="hero">
-  <div class="hero-deco" aria-hidden="true"></div>
-  <div class="hero-dot" aria-hidden="true"></div>
-  <div class="wrap">
-    <p class="tagline">Stop letting weak visuals water down your strong content.</p>
-    <h1>The <span class="accent">Vision</span> Studio ✨</h1>
-    <p class="hero-subhead">When the visual matches the message, people don't just see your post. They feel it.</p>
-    <p class="hero-copy">Upload your reference photo or go photo-free. Paste your post. The Vision Studio reads the message, mood, and emotion behind your words, then creates a detailed, ready-to-copy prompt for the AI image generator of your choice.</p>
-  </div>
-</header>
-
-<main class="form-body">
-  <div class="wrap">
-
-    <!-- Mode Selector -->
-    <div class="mode-selector">
-      <div class="mode-card active" id="modeMe" tabindex="0" role="button" aria-pressed="true">
-        <div class="mode-check"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="mode-icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        </div>
-        <div class="mode-label">Put Me in the Scene</div>
-        <div class="mode-desc">Upload your reference photo and the prompt will feature you.</div>
-      </div>
-      <div class="mode-card" id="modeScene" tabindex="0" role="button" aria-pressed="false">
-        <div class="mode-check"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="mode-icon">
-          <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-        </div>
-        <div class="mode-label">Set the Scene Without Me</div>
-        <div class="mode-desc">Quote visuals, styled scenes, or mood imagery — no person needed.</div>
-      </div>
-    </div>
-
-    <div class="photo-section" id="photoSection">
-    <div class="photo-grid">
-      <!-- Photo 1 -->
-      <section>
-        <div class="field-label">Upload Your Reference Photo</div>
-        <p class="helper">Upload a clear, well-lit photo of your face. We use this to anchor your likeness, while the AI builds a completely new setting, outfit, and pose around you.</p>
-        <div class="dropzone" id="dz1" tabindex="0" role="button" aria-label="Upload your reference photo">
-          <div class="cam-circle" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-          </div>
-          <span class="dropzone-text">Drag &amp; drop or click to upload</span>
-          <span class="file-limits">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            JPG, JPEG, PNG or WEBP&nbsp;|&nbsp;Max file size: 5MB
-          </span>
-        </div>
-        <div class="preview-wrap" id="pw1">
-          <img class="preview-img" id="pi1" alt="Your reference photo preview">
-          <button class="remove-btn" id="rm1" type="button">Remove</button>
-        </div>
-        <input type="file" id="file1" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
-      </section>
-
-      <!-- Photo 2 -->
-      <section>
-        <div class="field-label">Additional Reference Photo</div>
-        <p class="helper">Add another clear photo when a second angle may help preserve your likeness.</p>
-        <div class="dropzone" id="dz2" tabindex="0" role="button" aria-label="Upload an additional reference photo">
-          <div class="cam-circle" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-          </div>
-          <span class="dropzone-text">Drag &amp; drop or click to upload</span>
-          <span class="file-limits">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-            JPG, JPEG, PNG or WEBP&nbsp;|&nbsp;Max file size: 5MB
-          </span>
-        </div>
-        <div class="preview-wrap" id="pw2">
-          <img class="preview-img" id="pi2" alt="Your additional reference photo preview">
-          <button class="remove-btn" id="rm2" type="button">Remove</button>
-        </div>
-        <input type="file" id="file2" accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp">
-      </section>
-    </div>
-
-    <p style="font-size:0.82rem; color:#7a7480; text-align:center; margin-bottom:40px; max-width:600px; margin-left:auto; margin-right:auto; line-height:1.6;"><strong style="color:#4a4550;">Your photos stay private.</strong> If you upload a reference photo, it is previewed only in your browser and is never uploaded to The Vision Studio, Make, or our servers. When your prompt is ready, you'll attach your reference photo directly in the AI image generator you choose.</p>
-    </div>
-
-    <!-- Post -->
-    <section class="text-field">
-      <div class="field-label">Paste Your Marketing Post<span class="req-star">*</span></div>
-      <p class="helper">Paste the exact post you want the image to support. The app will identify its message, emotion, purpose, and strongest visual story.</p>
-      <textarea id="postText" aria-label="Paste your marketing post" placeholder="Paste the post you want visuals for—an Instagram caption, launch announcement, sales post, email, or story prompt…"></textarea>
-    </section>
-
-    <!-- Appearance -->
-    <section class="text-field appearance-section" id="appearanceSection">
-      <div class="field-label">Anything Important About Your Appearance?</div>
-      <p class="helper">Add details the reference photo may not clearly show or anything you want consistently included.</p>
-      <textarea id="appearanceText" class="small" aria-label="Appearance details" placeholder="Curvy body type, long blonde locs, gold hoop earrings, and wearing a tailored fuchsia blazer."></textarea>
-    </section>
-
-    <button class="generate-btn" id="generateBtn" type="button">Generate My Master Prompt 🎥</button>
-    <p class="validation-msg" id="validationMsg"></p>
-
-    <div class="loading" id="loading" aria-live="polite">
-      <div class="spinner" aria-hidden="true"></div>
-      <p class="loading-msg" id="loadingMsg">Reading the message behind your post...</p>
-    </div>
-
-    <div class="error-box" id="errorBox">
-      Something interrupted the connection. Your inputs are still here — give the button one more try.
-    </div>
-
-    <section class="results" id="results">
-      <h2 class="results-label">Your Directed Image Prompt</h2>
-      <p class="results-sub" id="resultsSub">Copy this into the AI image generator of your choice, alongside your reference photo.</p>
-      <div class="prompt-box" id="promptBox"></div>
-      <div class="results-controls">
-        <button class="copy-btn" id="copyBtn" type="button">Copy Prompt</button>
-        <button class="restart-btn" id="restartBtn" type="button">Start Over</button>
-      </div>
-    </section>
-
-  </div>
-</main>
-
-<footer>The Vision Studio ✨ · Powered by The Elite Vault</footer>
-
-</div><!-- /app -->
-
 <script>
-(function () {
-  /* ============ ACCESS GATE ============ */
-  var ACCESS_CODE = 'VISION2026';
-  var STORAGE_KEY = 'vs_unlocked';
+  const VISION_STUDIO_URL = "https://elite-vault-tm.github.io/vision-studio/";
 
-  var gate = document.getElementById('gate');
-  var app = document.getElementById('app');
-  var codeInput = document.getElementById('codeInput');
-  var codeBtn = document.getElementById('codeBtn');
-  var codeError = document.getElementById('codeError');
+  const order = ['welcome','idea','audience','experience','followup','goal','voice','loading','results'];
+  let current = 'welcome';
+  let needsFollowup = false;
 
-  function isUnlocked() {
-    try { return sessionStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { return false; }
-  }
-
-  function unlock() {
-    try { sessionStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
-    gate.classList.add('hidden');
-    app.classList.add('show');
-  }
-
-  if (isUnlocked()) { unlock(); }
-
-  codeBtn.addEventListener('click', tryCode);
-  codeInput.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') tryCode();
-  });
-
-  function tryCode() {
-    var val = codeInput.value.trim().toUpperCase();
-    if (val === ACCESS_CODE) {
-      codeError.textContent = '';
-      unlock();
-    } else if (!val) {
-      codeError.textContent = 'Enter the access code from your purchase confirmation.';
-    } else {
-      codeError.textContent = 'That code didn\u2019t match. Double-check your purchase confirmation email.';
-      codeInput.value = '';
-      codeInput.focus();
-    }
-  }
-
-  /* ============ MAIN APP ============ */
-  /* ============ MODE SELECTOR ============ */
-  var modeMe = document.getElementById('modeMe');
-  var modeScene = document.getElementById('modeScene');
-  var photoSection = document.getElementById('photoSection');
-  var appearanceSection = document.getElementById('appearanceSection');
-  var currentMode = 'person';
-
-  function setMode(mode) {
-    currentMode = mode;
-    if (mode === 'person') {
-      modeMe.classList.add('active');
-      modeMe.setAttribute('aria-pressed', 'true');
-      modeScene.classList.remove('active');
-      modeScene.setAttribute('aria-pressed', 'false');
-      photoSection.classList.remove('collapsed');
-      appearanceSection.classList.remove('collapsed');
-    } else {
-      modeScene.classList.add('active');
-      modeScene.setAttribute('aria-pressed', 'true');
-      modeMe.classList.remove('active');
-      modeMe.setAttribute('aria-pressed', 'false');
-      photoSection.classList.add('collapsed');
-      appearanceSection.classList.add('collapsed');
-    }
-  }
-
-  modeMe.addEventListener('click', function () { setMode('person'); });
-  modeScene.addEventListener('click', function () { setMode('scene'); });
-  modeMe.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMode('person'); } });
-  modeScene.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setMode('scene'); } });
-
-  var WEBHOOK_URL = 'https://hook.us2.make.com/cyk19qef0zkqgna93phi28emm4cb5xo3';
-  var MAX_BYTES = 5 * 1024 * 1024;
-  var ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
-
-  var memStore = {};
-  var store = {
-    get: function (k) {
-      try { return sessionStorage.getItem(k); } catch (e) { return memStore[k] || null; }
-    },
-    set: function (k, v) {
-      try { sessionStorage.setItem(k, v); } catch (e) { memStore[k] = v; }
-    },
-    remove: function (k) {
-      try { sessionStorage.removeItem(k); } catch (e) { delete memStore[k]; }
-    }
+  const state = {
+    idea:'', audience:'', experience:'', followup:'', goal:'', voice:''
   };
 
-  var postText = document.getElementById('postText');
-  var appearanceText = document.getElementById('appearanceText');
-  var generateBtn = document.getElementById('generateBtn');
-  var validationMsg = document.getElementById('validationMsg');
-  var loading = document.getElementById('loading');
-  var loadingMsg = document.getElementById('loadingMsg');
-  var results = document.getElementById('results');
-  var promptBox = document.getElementById('promptBox');
-  var resultsSub = document.getElementById('resultsSub');
-  var copyBtn = document.getElementById('copyBtn');
-  var restartBtn = document.getElementById('restartBtn');
-  var errorBox = document.getElementById('errorBox');
-
-  var photos = { 1: null, 2: null };
-  var loadingTimer = null;
-
-  var savedPost = store.get('vs_post');
-  var savedAppearance = store.get('vs_appearance');
-  if (savedPost) postText.value = savedPost;
-  if (savedAppearance) appearanceText.value = savedAppearance;
-
-  postText.addEventListener('input', function () { store.set('vs_post', postText.value); });
-  appearanceText.addEventListener('input', function () { store.set('vs_appearance', appearanceText.value); });
-
-  function wireDropzone(n) {
-    var dz = document.getElementById('dz' + n);
-    var input = document.getElementById('file' + n);
-    var wrap = document.getElementById('pw' + n);
-    var img = document.getElementById('pi' + n);
-    var removeBtn = document.getElementById('rm' + n);
-
-    function handleFile(file) {
-      if (!file) return;
-      var typeOk = ALLOWED_TYPES.indexOf(file.type) !== -1 ||
-                   /\.(jpe?g|png|webp)$/i.test(file.name);
-      if (!typeOk) {
-        showValidation('That file type isn\u2019t supported. Use JPG, JPEG, PNG, or WEBP.');
-        return;
-      }
-      if (file.size > MAX_BYTES) {
-        showValidation('That photo is over 5MB. Resize it and try again.');
-        return;
-      }
-      hideValidation();
-      photos[n] = file;
-      var reader = new FileReader();
-      reader.onload = function (e) {
-        img.src = e.target.result;
-        wrap.classList.add('show');
-        dz.style.display = 'none';
-      };
-      reader.readAsDataURL(file);
-    }
-
-    dz.addEventListener('click', function () { input.click(); });
-    dz.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); }
-    });
-    input.addEventListener('change', function () { handleFile(input.files[0]); });
-
-    ['dragenter', 'dragover'].forEach(function (evt) {
-      dz.addEventListener(evt, function (e) { e.preventDefault(); dz.classList.add('dragover'); });
-    });
-    ['dragleave', 'drop'].forEach(function (evt) {
-      dz.addEventListener(evt, function (e) { e.preventDefault(); dz.classList.remove('dragover'); });
-    });
-    dz.addEventListener('drop', function (e) {
-      handleFile(e.dataTransfer.files[0]);
-    });
-
-    removeBtn.addEventListener('click', function () {
-      photos[n] = null;
-      input.value = '';
-      img.src = '';
-      wrap.classList.remove('show');
-      dz.style.display = 'block';
-    });
-  }
-
-  wireDropzone(1);
-  wireDropzone(2);
-
-  function showValidation(msg) {
-    validationMsg.textContent = msg;
-    validationMsg.classList.add('show');
-  }
-  function hideValidation() {
-    validationMsg.classList.remove('show');
-  }
-
-  var messages = [
-    'Reading the message behind your post...',
-    'Choosing the strongest visual story...',
-    'Polishing your final prompt...'
+  const followupQuestions = [
+    "What happened that made you feel that way?",
+    "What would you tell another woman about this from your own experience?",
+    "What do you wish more women understood about this?",
+    "What have you seen people get wrong about this?"
   ];
 
-  function startLoading() {
-    var i = 0;
-    loadingMsg.textContent = messages[0];
-    loading.classList.add('show');
-    loadingTimer = setInterval(function () {
-      i = (i + 1) % messages.length;
-      loadingMsg.textContent = messages[i];
-    }, 2600);
-  }
+  function screenEl(name){ return document.querySelector(`[data-screen="${name}"]`); }
 
-  function stopLoading() {
-    clearInterval(loadingTimer);
-    loading.classList.remove('show');
-  }
-
-  function extractPrompt(raw) {
-    var trimmed = (raw || '').trim();
-    if (!trimmed) return null;
-    try {
-      var data = JSON.parse(trimmed);
-      if (typeof data === 'string') return data;
-      var keys = ['prompt', 'master_prompt', 'result', 'output', 'text', 'message', 'response', 'body'];
-      for (var i = 0; i < keys.length; i++) {
-        if (data && typeof data[keys[i]] === 'string' && data[keys[i]].trim()) {
-          return data[keys[i]].trim();
-        }
-      }
-      return JSON.stringify(data, null, 2);
-    } catch (e) {
-      return trimmed;
+  function updateProgress(){
+    const stepMap = {idea:1, audience:2, experience:3, followup:3, goal:4};
+    const wrap = document.getElementById('progressWrap');
+    if(stepMap[current]){
+      wrap.style.display = 'flex';
+      document.getElementById('progressLabel').textContent = `${stepMap[current]} of 4`;
+      document.getElementById('progressFill').style.width = `${(stepMap[current]/4)*100}%`;
+    } else {
+      wrap.style.display = 'none';
     }
   }
 
-  generateBtn.addEventListener('click', function () {
-    hideValidation();
-    errorBox.classList.remove('show');
-    results.classList.remove('show');
+  function updateNav(){
+    const navBar = document.getElementById('navBar');
+    const btnBack = document.getElementById('btnBack');
+    if(current === 'welcome' || current === 'loading' || current === 'results'){
+      navBar.style.display = 'none';
+    } else {
+      navBar.style.display = 'flex';
+      btnBack.style.display = (current === 'idea') ? 'none' : 'block';
+      document.getElementById('btnContinue').textContent = (current === 'voice') ? 'Generate My Post' : 'Continue';
+    }
+  }
 
-    if (!postText.value.trim()) {
-      showValidation('Paste your marketing post so the studio has a message to work with.');
+  function showScreen(name){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    screenEl(name).classList.add('active');
+    current = name;
+    updateProgress();
+    updateNav();
+    window.scrollTo(0,0);
+  }
+
+  function goTo(name){ showScreen(name); }
+
+  function validateCurrent(){
+    if(current === 'idea'){
+      const v = document.getElementById('input-idea').value.trim();
+      document.getElementById('err-idea').classList.toggle('show', v.length < 3);
+      state.idea = v;
+      return v.length >= 3;
+    }
+    if(current === 'audience'){
+      const v = document.getElementById('input-audience').value.trim();
+      document.getElementById('err-audience').classList.toggle('show', v.length < 2);
+      state.audience = v;
+      return v.length >= 2;
+    }
+    if(current === 'experience'){
+      const v = document.getElementById('input-experience').value.trim();
+      document.getElementById('err-experience').classList.toggle('show', v.length < 3);
+      state.experience = v;
+      return v.length >= 3;
+    }
+    if(current === 'followup'){
+      state.followup = document.getElementById('input-followup').value.trim();
+      return true;
+    }
+    if(current === 'goal'){
+      const has = !!state.goal;
+      document.getElementById('err-goal').classList.toggle('show', !has);
+      return has;
+    }
+    if(current === 'voice'){
+      state.voice = document.getElementById('input-voice').value.trim();
+      return true;
+    }
+    return true;
+  }
+
+  // word count heuristic for the follow-up trigger
+  function isVague(text){
+    const words = text.split(/\s+/).filter(Boolean);
+    return words.length < 12;
+  }
+
+  function goNext(){
+    if(!validateCurrent()) return;
+
+    if(current === 'experience'){
+      if(isVague(state.experience)){
+        needsFollowup = true;
+        const q = followupQuestions[Math.floor(Math.random()*followupQuestions.length)];
+        document.getElementById('followupQuestion').textContent = q;
+        showScreen('followup');
+      } else {
+        needsFollowup = false;
+        showScreen('goal');
+      }
       return;
     }
 
-    generateBtn.disabled = true;
-    startLoading();
-
-    fetch(WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        image_mode: currentMode,
-        written_post: postText.value.trim(),
-        appearance_details: currentMode === 'person' ? appearanceText.value.trim() : ''
-      }),
-      mode: 'cors'
-    })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.text();
-      })
-      .then(function (raw) {
-        var prompt = extractPrompt(raw);
-        stopLoading();
-        generateBtn.disabled = false;
-        if (!prompt) throw new Error('Empty response');
-        promptBox.textContent = prompt;
-        resultsSub.textContent = currentMode === 'person'
-          ? 'Copy this into the AI image generator of your choice, alongside your reference photo.'
-          : 'Copy this into the AI image generator of your choice.';
-        results.classList.add('show');
-        results.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      })
-      .catch(function (error) {
-        console.error('Fetch Error:', error);
-        stopLoading();
-        generateBtn.disabled = false;
-        errorBox.classList.add('show');
-      });
-  });
-
-  copyBtn.addEventListener('click', function () {
-    var text = promptBox.textContent;
-    function done() {
-      copyBtn.textContent = 'Copied ✓';
-      setTimeout(function () { copyBtn.textContent = 'Copy Prompt'; }, 2000);
+    if(current === 'followup'){
+      showScreen('goal');
+      return;
     }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done).catch(function () { fallbackCopy(text, done); });
-    } else {
-      fallbackCopy(text, done);
-    }
-  });
 
-  function fallbackCopy(text, done) {
-    var ta = document.createElement('textarea');
-    ta.value = text;
-    ta.style.position = 'fixed';
-    ta.style.opacity = '0';
-    document.body.appendChild(ta);
-    ta.select();
-    try { document.execCommand('copy'); } catch (e) {}
-    document.body.removeChild(ta);
-    done();
+    if(current === 'goal'){
+      showScreen('voice');
+      return;
+    }
+
+    if(current === 'voice'){
+      runGeneration();
+      return;
+    }
+
+    const idx = order.indexOf(current);
+    showScreen(order[idx+1]);
   }
 
-  restartBtn.addEventListener('click', function () {
-    postText.value = '';
-    appearanceText.value = '';
-    store.remove('vs_post');
-    store.remove('vs_appearance');
-    [1, 2].forEach(function (n) {
-      photos[n] = null;
-      document.getElementById('file' + n).value = '';
-      document.getElementById('pi' + n).src = '';
-      document.getElementById('pw' + n).classList.remove('show');
-      document.getElementById('dz' + n).style.display = 'block';
+  function goBack(){
+    if(current === 'goal' && !needsFollowup){
+      showScreen('experience');
+      return;
+    }
+    if(current === 'audience'){
+      showScreen('idea');
+      return;
+    }
+    const idx = order.indexOf(current);
+    if(idx > 0) showScreen(order[idx-1]);
+  }
+
+  function skipVoice(){
+    state.voice = '';
+    document.getElementById('input-voice').value = '';
+    runGeneration();
+  }
+
+  // goal card selection
+  document.querySelectorAll('.goal-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      state.goal = card.dataset.goal;
+      document.getElementById('err-goal').classList.remove('show');
     });
-    promptBox.textContent = '';
-    results.classList.remove('show');
-    errorBox.classList.remove('show');
-    hideValidation();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-})();
+
+  const loadingLines = [
+    "Turning your experience into content…",
+    "Listening for what's actually yours…",
+    "Shaping your perspective into a post…",
+    "Almost there…"
+  ];
+
+  async function runGeneration(){
+    showScreen('loading');
+    let i = 0;
+    const loadingText = document.querySelector('#screens [data-screen="loading"] .loading-text');
+    const loadingInterval = setInterval(() => {
+      i = (i+1) % loadingLines.length;
+      loadingText.textContent = loadingLines[i];
+    }, 1600);
+
+    const experienceCombined = needsFollowup && state.followup
+      ? `${state.experience}\n\nMore detail: ${state.followup}`
+      : state.experience;
+
+    const systemPrompt = `You help experienced women entrepreneurs turn what they already know into one piece of recognizable social content. You never invent personal stories, opinions, or experiences the user did not give you. You start from her lived perspective, find the strongest content angle inside it, and keep her named audience in mind throughout.
+
+Voice rules for everything you write: warm but direct, big-sister tone, honest and grounded, short punchy sentences, one thought at a time, no corporate or robotic language, no buzzwords, no hype phrases, no "here's the thing," no "let's dive in," no "it's not about X, it's about Y," no rhetorical contrast tricks, no words like actually/truly/elevate/unlock/maximize/game-changing/powerful/authentic/compelling/level up. No em dashes.
+
+Hooks must avoid generic AI cadences: no "Here's the truth," "Nobody talks about," "You need to hear this," "If you're doing X, stop," "This changed everything," "Let that sink in," "Read that again." Not every hook should be a question. Each of the 3 hooks must take a genuinely different approach: one relatable/conversational, one perspective/opinion-led, one short and direct.
+
+If an optional writing sample is provided, analyze it closely and mirror her natural habits in the "draft" field specifically: her emoji use, punctuation, spacing, sentence rhythm, humor, and conversational quirks. For emojis: if her sample uses emojis, include roughly 1-3 relevant emojis in the draft where they'd naturally fall, matching the types she tends to reach for (playful, warm, emphatic, etc). Never place an emoji at the end of every paragraph and never add decorative emojis that aren't tied to what's being said. If her sample does not use emojis at all, do not add any to the draft. If no writing sample is provided, write the draft in the standard voice rules above with no emojis.
+
+Return ONLY valid JSON, no markdown fences, no preamble, in exactly this shape:
+{
+  "angle": "one clear sentence stating the strongest angle",
+  "whyItWorks": "1-2 sentences explaining what part of her experience makes this angle distinctive, referencing what she actually said",
+  "hooks": [
+    {"tag": "Relatable", "text": "..."},
+    {"tag": "Perspective", "text": "..."},
+    {"tag": "Direct", "text": "..."}
+  ],
+  "draft": "one full social post in her voice, using her perspective as the core message, speaking to her named audience, supporting her stated goal. If the goal is 'Lead Toward an Offer', bridge naturally toward an offer using the placeholder [YOUR OFFER] rather than inventing offer details.",
+  "reusablePrompt": "one reusable prompt written in second person instructing an AI to repeat this exact process on a new idea. It must include editable placeholders exactly as: [MY IDEA], [WHO I AM TALKING TO], [WHAT I HAVE LEARNED / EXPERIENCED / BELIEVE], [WHAT I WANT THIS POST TO DO], [OPTIONAL WRITING SAMPLE]. It should instruct the AI to start from lived experience, find the strongest angle, keep the audience in mind, avoid generic advice, preserve natural voice, create three hooks, create one draft, match the content goal, ask one clarifying question if the perspective is too vague, and never invent stories or experiences."
+}`;
+
+    const userPrompt = `[MY IDEA]: ${state.idea}
+[WHO I AM TALKING TO]: ${state.audience}
+[WHAT I HAVE LEARNED / EXPERIENCED / BELIEVE]: ${experienceCombined}
+[WHAT I WANT THIS POST TO DO]: ${state.goal}
+[OPTIONAL WRITING SAMPLE]: ${state.voice ? state.voice : "(none provided)"}`;
+
+    try{
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1500,
+          system: systemPrompt,
+          messages: [{ role: "user", content: userPrompt }]
+        })
+      });
+
+      const data = await response.json();
+      const textBlock = (data.content || []).find(b => b.type === 'text');
+      if(!textBlock) throw new Error("No response text returned.");
+
+      const cleaned = textBlock.text.replace(/```json|```/g, '').trim();
+      const parsed = JSON.parse(cleaned);
+
+      clearInterval(loadingInterval);
+      renderResults(parsed);
+      showScreen('results');
+    } catch(err){
+      clearInterval(loadingInterval);
+      showError("Something didn't load right. Give it another try in a moment.");
+      showScreen('results');
+    }
+  }
+
+  function showError(msg){
+    const banner = document.getElementById('errorBanner');
+    banner.textContent = msg;
+    banner.style.display = 'block';
+    document.getElementById('resultsContent').innerHTML = '';
+  }
+
+  function copyText(text, btn){
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 1600);
+    });
+  }
+
+  function esc(str){
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+  }
+
+  function renderResults(r){
+    document.getElementById('errorBanner').style.display = 'none';
+
+    const hooksHtml = r.hooks.map((h, idx) => `
+      <div class="hook-item">
+        <div>
+          <p class="hook-tag">${esc(h.tag)}</p>
+          <p class="hook-text">${esc(h.text)}</p>
+        </div>
+        <button class="copy-btn" onclick='copyText(${JSON.stringify(h.text)}, this)'>Copy</button>
+      </div>
+    `).join('');
+
+    const visionCard = VISION_STUDIO_URL ? `
+      <div class="vision-card">
+        <h3>Your message is ready.</h3>
+        <p>Now give it a visual that carries the same message.</p>
+        <a class="vision-btn" href="${VISION_STUDIO_URL}" target="_blank" rel="noopener">Open The Vision Studio →</a>
+      </div>
+    ` : `
+      <div class="vision-card">
+        <h3>Your message is ready.</h3>
+        <p>Now give it a visual that carries the same message.</p>
+      </div>
+    `;
+
+    document.getElementById('resultsContent').innerHTML = `
+      <div class="angle-block">
+        <span class="angle-quote-mark" aria-hidden="true">&#8220;</span>
+        <p class="result-label">The Angle I'd Use</p>
+        <p class="angle-text">${esc(r.angle)}</p>
+        <p class="why-label">Why this works</p>
+        <p class="why-text">${esc(r.whyItWorks)}</p>
+      </div>
+
+      <div class="result-block">
+        <p class="result-label">3 Ways to Open It</p>
+        ${hooksHtml}
+      </div>
+
+      <div class="result-block">
+        <p class="result-label">Your Draft</p>
+        <p class="draft-text">${esc(r.draft)}</p>
+        <div class="copy-row">
+          <button class="copy-btn" onclick='copyText(${JSON.stringify(r.draft)}, this)'>Copy full draft</button>
+        </div>
+      </div>
+
+      <div class="result-block">
+        <p class="result-label">Keep This Prompt</p>
+        <p class="prompt-text">${esc(r.reusablePrompt)}</p>
+        <div class="copy-row">
+          <button class="copy-btn" onclick='copyText(${JSON.stringify(r.reusablePrompt)}, this)'>Copy prompt</button>
+        </div>
+      </div>
+
+      ${visionCard}
+
+      <button class="start-over" onclick="startOver()">Start over with a new idea</button>
+      <div class="footer-mark">· Powered by The Elite Vault</div>
+    `;
+  }
+
+  function startOver(){
+    Object.keys(state).forEach(k => state[k] = '');
+    document.getElementById('input-idea').value = '';
+    document.getElementById('input-audience').value = '';
+    document.getElementById('input-experience').value = '';
+    document.getElementById('input-followup').value = '';
+    document.getElementById('input-voice').value = '';
+    document.querySelectorAll('.goal-card').forEach(c => c.classList.remove('selected'));
+    document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+    needsFollowup = false;
+    showScreen('welcome');
+  }
+
+  showScreen('welcome');
 </script>
 </body>
 </html>
